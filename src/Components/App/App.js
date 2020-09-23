@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import Pets from '../Pets/Pets.jsx';
 
 function App() {
   return (
-    <h4>Hello.</h4>
+    <Router >
+      <Pets />
+    </Router>
   );
 }
 
