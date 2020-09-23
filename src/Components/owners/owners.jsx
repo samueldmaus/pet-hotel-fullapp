@@ -39,6 +39,7 @@ export default function OwnersTable() {
   const classes = useStyles();
 
   return (
+    <ownersInputs />
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
