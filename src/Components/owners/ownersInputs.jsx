@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ownerInputFields() {
+export default function OwnerInputFields() {
   const classes = useStyles();
 
    const [ownerName, setOwnerName] = React.useState('');
@@ -29,18 +29,19 @@ export default function ownerInputFields() {
   };
 
   const handleSubmitOwner = () => {
-    setOwner(event.target.value);
+
   };
 
 
   return (
+    <div>
     <h3>Add Owner</h3>
     <TextField id="standard-basic" onChange = {this.handleOwnerName}
     label="Standard" value={ownerName}/>
-     <Button onClick = {handleSubmit} variant={contained} color={primary}
+     <Button onClick = {handleSubmitOwner} variant={contained} color={primary}
      >Submit</Button>
-
+    </div>
   );
 }
 
-connect(mapstoreToProps)(OwnersTable)
+connect(mapstoreToProps)(OwnerInputFields)
