@@ -11,7 +11,6 @@ function* getPets() {
     }
 }
 
-
 function* petsSaga() {
     yield takeLatest('GET_PETS', getPets);
 }

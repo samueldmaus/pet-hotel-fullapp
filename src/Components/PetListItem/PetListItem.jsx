@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from '@sweetalert/with-react';
 import { Tooltip, IconButton, TableCell, TableRow } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
 
 class PetListItem extends Component {
   state = {
@@ -59,18 +60,18 @@ class PetListItem extends Component {
             <TableCell>{this.state.newPet.isCheckedIn}</TableCell>
             <TableCell>
                 <Tooltip title="Delete" >
-                <IconButton onClick={() => this.deletePet(this.props.pet.id)} >
-                    <DeleteIcon color="error" /> 
-                </IconButton>
+                    <IconButton onClick={() => this.deletePet(this.props.pet.id)} >
+                        <DeleteIcon color="error" /> 
+                    </IconButton>
                 </Tooltip>
                 <Tooltip title="Check In" >
-                <IconButton onClick={() => this.checkIn(this.props.pet.id)} >
-                    <DeleteIcon color="error" /> 
-                </IconButton>
+                    <IconButton onClick={() => this.checkIn(this.props.pet.id)} >
+                        <CheckIcon color="primary" /> 
+                    </IconButton>
                 </Tooltip>
             </TableCell>
         </TableRow>
-      )
+    )
   }
 }
 
