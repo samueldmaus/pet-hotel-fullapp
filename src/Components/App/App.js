@@ -8,9 +8,11 @@ import {
   Switch,
 } from 'react-router-dom';
 import Pets from '../Pets/Pets.jsx';
+
 import Owners from '../Owners/Owners';
 import TabsPage from '../TabsPage/TabsPage'
 import ToolBar from '../ToolBar/ToolBar'
+
 
 
 class App extends Component {
@@ -19,6 +21,7 @@ class App extends Component {
     this.props.dispatch({ type: 'GET_OWNERS'})
     this.props.dispatch({ type: 'TEST_PETS'})
   }
+
   render() {
     return (
       <>
