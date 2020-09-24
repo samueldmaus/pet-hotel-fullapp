@@ -34,7 +34,7 @@ export default function OwnersInputs(props) {
   const handleSubmitOwner = () => {
     console.log(ownerName)
     props.dispatch({
-      type: 'ADD_OWNERS', 
+      type: 'ADD_OWNER', 
       payload: ownerName})
   };
 
