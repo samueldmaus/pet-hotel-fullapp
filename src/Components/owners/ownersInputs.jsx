@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -6,8 +6,9 @@ import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/';
+import Button from '@material-ui/core/Button';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,18 +20,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OwnerInputFields() {
+export default function OwnersInputs(props) {
   const classes = useStyles();
 
    const [ownerName, setOwnerName] = React.useState('');
   
   
-    const handleOwnerName = (value) = (event) => {
-    setOwner(event.target.value);
+    const handleOwnerName = (event) => {
+    setOwnerName(event.target.value);
     console.log(ownerName)
   };
 
   const handleSubmitOwner = () => {
+    console.log(ownerName)
     props.dispatch({
       type: 'ADD_OWNERS', 
       payload: ownerName})
@@ -40,12 +42,11 @@ export default function OwnerInputFields() {
   return (
     <div>
     <h3>Add Owner</h3>
-    <TextField id="standard-basic" onChange = {this.handleOwnerName}
-    label="Standard" value={ownerName}/>
-     <Button onClick = {handleSubmitOwner} variant={contained} color={primary}
-     >Submit</Button>
+    <TextField id="standard-basic" onChange = {props.handleOwnerName}
+    label="Enter an Owner Name" value={ownerName}/>
+     <Button variant="contained" color="primary" onClick = {props.handleSubmitOwner}>Submit</Button>
     </div>
   );
 }
 
-connect(mapStoreToProps)(OwnerInputFields)
+connect(mapStoreToProps)(OwnersInputs)

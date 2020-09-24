@@ -7,8 +7,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import Pets from '../Pets/Pets.jsx';
-import owners from '../owners/owners';
+// import Pets from '../Pets/Pets.jsx';
+import Owners from '../Owners/Owners';
 
 
 class App extends Component {
@@ -20,7 +20,8 @@ class App extends Component {
   render() {
     return (
       <Router >
-        <Pets />
+        {/* <Pets /> */}
+        <Owners />
       </Router>
     );
   }
