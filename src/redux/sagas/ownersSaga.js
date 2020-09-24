@@ -11,7 +11,7 @@ function* getOwners() {
     }
 }
 
-function* addOwners(action) {
+function* addOwner(action) {
     try {
         yield axios.post('/api/owners')
         console.log('Owners:', action.payload);
@@ -21,7 +21,7 @@ function* addOwners(action) {
     }
 }
 
-function* deleteOwners(action) {
+function* deleteOwner(action) {
     // try {
     //     yield axios.post('/api/owners')
     //     console.log('Owners:', action.payload);
@@ -33,9 +33,9 @@ function* deleteOwners(action) {
 
 
 function* ownersSaga() {
-    yield takeLatest('GET_OWNERS', getOwners);
-    yield takeLatest('ADD_OWNER', addOwners);
-    yield takeLatest('DELETE_OWNER', deleteOwners);
+    yield takeLatest('GET_OWNER', getOwners);
+    yield takeLatest('ADD_OWNER', addOwner);
+    yield takeLatest('DELETE_OWNER', deleteOwner);
 }
 
 export default ownersSaga;

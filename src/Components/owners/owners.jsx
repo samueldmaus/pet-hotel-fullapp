@@ -45,7 +45,7 @@ export default connect(mapStoreToProps)(function Owners(props) {
   }, []);
 
   const handleDelete = (id) => {
-    props.dispatch({ type: 'DELETE_OWNERS', payload: id})
+    props.dispatch({ type: 'DELETE_OWNER', payload: id})
     console.log('in id', id)
   }
 
