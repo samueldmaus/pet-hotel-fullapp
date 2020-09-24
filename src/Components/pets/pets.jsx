@@ -37,7 +37,7 @@ class Pets extends Component {
                                 <TableBody>
                                     {this.props.store.pets.map((pet) => {
                                         return (
-                                            <PetListItem key={pet.pet_id} pet={pet}/>
+                                            <PetListItem key={pet.id} pet={pet}/>
                                         );
                                     })}
                                 </TableBody>

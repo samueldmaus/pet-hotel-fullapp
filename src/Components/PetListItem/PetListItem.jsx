@@ -59,12 +59,12 @@ class PetListItem extends Component {
             <TableCell>{this.state.newPet.isCheckedIn}</TableCell>
             <TableCell>
                 <Tooltip title="Delete" >
-                <IconButton onClick={() => this.deletePet(this.props.pet.pet_id)} >
+                <IconButton onClick={() => this.deletePet(this.props.pet.id)} >
                     <DeleteIcon color="error" /> 
                 </IconButton>
                 </Tooltip>
                 <Tooltip title="Check In" >
-                <IconButton onClick={() => this.checkIn(this.props.pet.pet_id)} >
+                <IconButton onClick={() => this.checkIn(this.props.pet.id)} >
                     <DeleteIcon color="error" /> 
                 </IconButton>
                 </Tooltip>
