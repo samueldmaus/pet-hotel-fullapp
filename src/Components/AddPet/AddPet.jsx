@@ -62,8 +62,11 @@ class AddPet extends Component {
                             <FormControl>
                                 <InputLabel>Owner</InputLabel>
                                 <Select className="select" value={this.state.newPet.owner} onChange={(value) => this.handleChangePet(value, 'owner')}>
-                                    <MenuItem value={'Hannan'}>Hannan</MenuItem>
-                                    <MenuItem value={'Matt'}>Matt</MenuItem>
+                                    {this.props.store.owners.map((owner) => {
+                                        return (
+                                            <MenuItem value={owner.name} key={owner.id}>{owner.name}</MenuItem>
+                                        );
+                                    })}
                                 </Select>
                             </FormControl>
                             </Grid>
