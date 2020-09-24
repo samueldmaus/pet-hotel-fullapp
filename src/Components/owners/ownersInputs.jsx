@@ -7,6 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,10 +27,13 @@ export default function OwnerInputFields() {
   
     const handleOwnerName = (value) = (event) => {
     setOwner(event.target.value);
+    console.log(ownerName)
   };
 
   const handleSubmitOwner = () => {
-
+    props.dispatch({
+      type: 'ADD_OWNERS', 
+      payload: ownerName})
   };
 
 
@@ -44,4 +48,4 @@ export default function OwnerInputFields() {
   );
 }
 
-connect(mapstoreToProps)(OwnerInputFields)
+connect(mapStoreToProps)(OwnerInputFields)

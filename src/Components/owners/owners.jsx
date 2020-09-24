@@ -35,11 +35,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OwnersTable() {
-  const classes = useStyles();
+class Owners extends Component() {
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_OWNERS'})
+  }
 
+  handleDelete = (id) => {
+    this.props.dispatch({ type: 'DELETE_OWNERS', payload: this.id})
+  }
+
+  classes = useStyles();
+  render() {
   return (
+    <div>
+    <div>
     <ownersInputs />
+    </div>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
@@ -51,20 +62,22 @@ export default function OwnersTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name} */}
-              {/* </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow> */}
-          {/* ))} */}
+        {this.props.store.owners.map((owner) => {
+          return (
+              <TableRow key={owner.id}>
+                <TableCell align="right">{owner.name}</TableCell>
+                <TableCell align="right">{owner.pets}</TableCell>
+                <Button variant="contained" color="Primary" onClick={() =>
+               {this.handleDelete(row.id)}}>Complete This Request</Button>
+              </TableRow>
+          );
+      })}
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
   );
 }
-connect (mapstoreToProps)(OwnersTable)
+}
+
+export default connect(mapStoreToProps)(Owners);
