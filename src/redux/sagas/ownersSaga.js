@@ -32,7 +32,7 @@ function* deleteOwner(action) {
 }
 
 function* ownersSaga() {
-    yield takeLatest('GET_OWNER', getOwners);
+    yield takeLatest('GET_OWNERS', getOwners);
     yield takeLatest('ADD_OWNER', addOwner);
     yield takeLatest('DELETE_OWNER', deleteOwner);
 }
