@@ -11,9 +11,31 @@ function* getOwners() {
     }
 }
 
+function* addOwners(action) {
+    try {
+        yield axios.post('/api/owners')
+        console.log('Owners:', action.payload);
+        yield put({type:'GET_OWNERS'});
+    } catch (error) {
+        console.log('error in AddOwners', error)
+    }
+}
+
+function* deleteOwners(action) {
+    // try {
+    //     yield axios.post('/api/owners')
+    //     console.log('Owners:', action.payload);
+    //     yield put({type:'GET_OWNERS'});
+    // } catch (error) {
+    //     console.log('error in AddOwners', error)
+    // }
+}
+
 
 function* ownersSaga() {
     yield takeLatest('GET_OWNERS', getOwners);
+    yield takeLatest('ADD_OWNER', addOwners);
+    yield takeLatest('DELETE_OWNER', deleteOwners);
 }
 
 export default ownersSaga;
