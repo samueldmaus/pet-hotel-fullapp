@@ -14,7 +14,6 @@ class Pets extends Component {
     this.props.dispatch({ type: 'GET_PETS'})
     this.props.dispatch({ type: 'GET_OWNERS'})
     this.props.dispatch({ type: 'TEST_PETS'})
-
   }
 
   render() {
