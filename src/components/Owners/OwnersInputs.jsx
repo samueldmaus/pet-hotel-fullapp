@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OwnersInputs(props) {
+export default connect(mapStoreToProps)(function OwnersInputs(props) {
   const classes = useStyles();
 
    const [ownerName, setOwnerName] = React.useState('');
@@ -35,7 +35,7 @@ export default function OwnersInputs(props) {
     console.log(ownerName)
     props.dispatch({
       type: 'ADD_OWNER', 
-      payload: ownerName})
+      payload: {name: ownerName}})
   };
 
 
@@ -47,6 +47,5 @@ export default function OwnersInputs(props) {
      <Button variant="contained" color="primary" onClick = {handleSubmitOwner}>Submit</Button>
     </div>
   );
-}
+})
 
-connect(mapStoreToProps)(OwnersInputs)

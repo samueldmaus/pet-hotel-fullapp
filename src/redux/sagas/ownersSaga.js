@@ -13,7 +13,7 @@ function* getOwners() {
 
 function* addOwner(action) {
     try {
-        yield axios.post('/api/owners')
+        yield axios.post('/api/owners', action.payload)
         console.log('Owners:', action.payload);
         yield put({type:'GET_OWNERS'});
     } catch (error) {
@@ -23,7 +23,7 @@ function* addOwner(action) {
 
 function* deleteOwner(action) {
     try {
-        let id = action.payload
+        let id = action.payload.toDelete
         yield axios.delete(`/api/owners/${id}`)
         yield put({type:'GET_OWNERS'});
     } catch (error) {

@@ -45,7 +45,7 @@ export default connect(mapStoreToProps)(function Owners(props) {
   }, []);
 
   const handleDelete = (id) => {
-    props.dispatch({ type: 'DELETE_OWNER', payload: id})
+    props.dispatch({ type: 'DELETE_OWNER', payload: {toDelete: id}})
     console.log('in id', id)
   }
 
@@ -67,7 +67,7 @@ export default connect(mapStoreToProps)(function Owners(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-        {/* {props.store.owners.map((owner) => {
+        {props.store.owners.map((owner) => {
           return (
               <TableRow key={owner.id}>
                 <TableCell align="right">{owner.name}</TableCell>
@@ -76,7 +76,7 @@ export default connect(mapStoreToProps)(function Owners(props) {
                {handleDelete(owner.id)}}>Delete</Button>
               </TableRow>
           );
-      })} */}
+      })}
         </TableBody>
       </Table>
     </TableContainer>
