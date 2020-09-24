@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,7 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ownersInputs from './ownerInputs'
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import OwnersInputs from './OwnersInputs.jsx'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,21 +37,24 @@ const useStyles = makeStyles({
   },
 });
 
-class Owners extends Component() {
-  componentDidMount() {
-    this.props.dispatch({ type: 'GET_OWNERS'})
+
+export default connect(mapStoreToProps)(function Owners(props) {
+ 
+  useEffect(() => {
+    props.dispatch({ type: 'GET_OWNERS'});
+  }, []);
+
+  const handleDelete = (id) => {
+    props.dispatch({ type: 'DELETE_OWNERS', payload: id})
+    console.log('in id', id)
   }
 
-  handleDelete = (id) => {
-    this.props.dispatch({ type: 'DELETE_OWNERS', payload: this.id})
-  }
-
-  classes = useStyles();
-  render() {
+  const classes = useStyles();
+ 
   return (
     <div>
     <div>
-    <ownersInputs />
+    <OwnersInputs />
     </div>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -62,22 +67,21 @@ class Owners extends Component() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {this.props.store.owners.map((owner) => {
+        {/* {props.store.owners.map((owner) => {
           return (
               <TableRow key={owner.id}>
                 <TableCell align="right">{owner.name}</TableCell>
                 <TableCell align="right">{owner.pets}</TableCell>
                 <Button variant="contained" color="Primary" onClick={() =>
-               {this.handleDelete(row.id)}}>Complete This Request</Button>
+               {props.handleDelete(owner.id)}}>Delete</Button>
               </TableRow>
           );
-      })}
+      })} */}
         </TableBody>
       </Table>
     </TableContainer>
     </div>
   );
-}
-}
 
-export default connect(mapStoreToProps)(Owners);
+})
+
