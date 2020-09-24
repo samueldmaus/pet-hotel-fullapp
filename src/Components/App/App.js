@@ -17,6 +17,4 @@ import { connect } from 'react-redux';
 
 import Pets from '../Pets/Pets.jsx';
 
-
-
-export default App;
+export default connect()(App);

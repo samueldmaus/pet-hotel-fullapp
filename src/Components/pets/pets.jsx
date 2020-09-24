@@ -13,6 +13,7 @@ class Pets extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'GET_PETS'})
     this.props.dispatch({ type: 'GET_OWNERS'})
+    this.props.dispatch({ type: 'TEST_PETS'})
   }
 
   render() {
@@ -43,7 +44,7 @@ class Pets extends Component {
                                 <TableBody>
                                     {this.props.store.pets.map((pet) => {
                                         return (
-                                            <PetListItem key={pet.pet_id} pet={pet}/>
+                                            <PetListItem key={pet.id} pet={pet}/>
                                         );
                                     })}
                                 </TableBody>

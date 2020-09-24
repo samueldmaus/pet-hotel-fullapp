@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from '@sweetalert/with-react';
-import { Tooltip, IconButton, TableCell, TableRow } from '@material-ui/core';
+import { Tooltip, IconButton, TableCell, TableRow, TextField } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import SaveIcon from '@material-ui/icons/Save';
+
 
 class PetListItem extends Component {
   state = {
+    editing: false,
     newPet: this.props.pet
   };
 
@@ -44,33 +48,60 @@ class PetListItem extends Component {
     })
   }
 
-  checkIn = (id) => {
-      this.props.dispatch({ type: 'CHECK_IN', payload: id})
+  toggleEdit = () => {
+    this.setState({
+      editing: true
+    })
   }
 
+  checkIn = (id) => {
+      this.props.dispatch({ type: 'CHECK_IN', payload: id})
+      this.setState({
+        editing: false
+      })
+  }
 
   render() {
       return (
         <TableRow>
-            <TableCell>{this.state.newPet.owner}</TableCell>
-            <TableCell>{this.state.newPet.name}</TableCell>
-            <TableCell>{this.state.newPet.breed}</TableCell>
-            <TableCell>{this.state.newPet.color}</TableCell>
-            <TableCell>{this.state.newPet.isCheckedIn}</TableCell>
+            <TableCell>{this.props.pet.owner}</TableCell>
+            <TableCell>{this.props.pet.name}</TableCell>
+            <TableCell>{this.props.pet.breed}</TableCell>
+            <TableCell>{this.props.pet.color}</TableCell>
+            { this.state.editing ?
+            <TableCell><TextField size="small" value={this.state.newPet.isCheckedIn} onChange = {(event) => this.handleChangePet(event, 'isCheckedIn')}/></TableCell>
+            :
+            <TableCell>{this.props.pet.isCheckedIn}</TableCell>
+            }
+            { this.state.editing ?
             <TableCell>
                 <Tooltip title="Delete" >
-                <IconButton onClick={() => this.deletePet(this.props.pet.pet_id)} >
-                    <DeleteIcon color="error" /> 
+                    <IconButton onClick={() => this.deletePet(this.props.pet.id)} >
+                        <DeleteIcon color="error" /> 
+                    </IconButton>
+                </Tooltip>
+            <Tooltip title="Save" >
+                <IconButton onClick={() => this.checkIn(this.props.pet.id)} >
+                    <SaveIcon /> 
                 </IconButton>
+            </Tooltip>
+            </TableCell>
+            :
+            <TableCell>
+                <Tooltip title="Delete" >
+                    <IconButton onClick={() => this.deletePet(this.props.pet.id)} >
+                        <DeleteIcon color="error" /> 
+                    </IconButton>
                 </Tooltip>
                 <Tooltip title="Check In" >
-                <IconButton onClick={() => this.checkIn(this.props.pet.pet_id)} >
-                    <DeleteIcon color="error" /> 
-                </IconButton>
+                    <IconButton onClick={() => this.toggleEdit()} >
+                        <CheckIcon color="primary" /> 
+                    </IconButton>
                 </Tooltip>
             </TableCell>
+            }
         </TableRow>
-      )
+    )
   }
 }
 
