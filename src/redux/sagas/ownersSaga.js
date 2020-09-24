@@ -22,13 +22,13 @@ function* addOwner(action) {
 }
 
 function* deleteOwner(action) {
-    // try {
-    //     yield axios.post('/api/owners')
-    //     console.log('Owners:', action.payload);
-    //     yield put({type:'GET_OWNERS'});
-    // } catch (error) {
-    //     console.log('error in AddOwners', error)
-    // }
+    try {
+        let id = action.payload
+        yield axios.delete(`/api/owners/${id}`)
+        yield put({type:'GET_OWNERS'});
+    } catch (error) {
+        console.log('error in AddOwners', error)
+    }
 }
 
 function* ownersSaga() {
