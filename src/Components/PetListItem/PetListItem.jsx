@@ -54,8 +54,8 @@ class PetListItem extends Component {
     })
   }
 
-  checkIn = (id) => {
-      this.props.dispatch({ type: 'CHECK_IN', payload: id})
+  checkIn = () => {
+      this.props.dispatch({ type: 'CHECK_IN', payload: this.state.newPet})
       this.setState({
         editing: false
       })
