@@ -18,12 +18,6 @@ class Pets extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-
-      
-      <div>
-      </div>
-=======
         <div>
             <Grid container justify="center" alignItems="stretch" spacing={2}>
                 <AddPet />
@@ -54,7 +48,6 @@ class Pets extends Component {
                 </Grid>
             </Grid>
         </div>
->>>>>>> 6f292d5f6a7f804cecc50d3f7e14a5f58de024dd
     );
   }
 }

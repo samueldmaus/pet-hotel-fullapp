@@ -17,6 +17,7 @@ class App extends Component {
     this.props.dispatch({ type: 'GET_OWNERS'})
     this.props.dispatch({ type: 'TEST_PETS'})
   }
+  
   render() {
     return (
       <Router >
