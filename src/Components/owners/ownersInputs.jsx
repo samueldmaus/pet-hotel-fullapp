@@ -42,9 +42,9 @@ export default function OwnersInputs(props) {
   return (
     <div>
     <h3>Add Owner</h3>
-    <TextField id="standard-basic" onChange = {props.handleOwnerName}
-    label="Enter an Owner Name" value={ownerName}/>
-     <Button variant="contained" color="primary" onClick = {props.handleSubmitOwner}>Submit</Button>
+    <TextField id="standard-basic" onChange = {handleOwnerName}
+    label="Enter an Owner Name" />
+     <Button variant="contained" color="primary" onClick = {handleSubmitOwner}>Submit</Button>
     </div>
   );
 }
