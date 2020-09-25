@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Pets from '../Pets/Pets.jsx';
+import Pets from '../Pets/Pets.js';
 import Owners from '../Owners/Owners';
 
 function TabPanel(props) {

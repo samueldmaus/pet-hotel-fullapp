@@ -7,7 +7,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import Pets from '../Pets/Pets.jsx';
+import Pets from '../Pets/Pets.js';
 
 import Owners from '../Owners/Owners';
 import TabsPage from '../TabsPage/TabsPage'
