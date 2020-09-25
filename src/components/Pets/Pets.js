@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import AddPet from '../AddPet/AddPet.jsx'
-import PetListItem from '../PetListItem/PetListItem.jsx'
+import AddPet from '../AddPet/AddPet.js'
+import PetListItem from '../PetListItem/PetListItem.js'
 import { Grid, Paper, Table, TableContainer, TableCell, TableRow, TableHead, TableBody } from '@material-ui/core';
 
 
@@ -13,7 +13,6 @@ class Pets extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'GET_PETS'})
     this.props.dispatch({ type: 'GET_OWNERS'})
-    this.props.dispatch({ type: 'TEST_PETS'})
   }
 
   render() {
