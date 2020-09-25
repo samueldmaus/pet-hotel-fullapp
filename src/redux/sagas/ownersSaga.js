@@ -22,12 +22,13 @@ function* addOwner(action) {
 }
 
 function* deleteOwner(action) {
+    
     try {
         let id = action.payload.toDelete
         yield axios.delete(`/api/owners/${id}`)
         yield put({type:'GET_OWNERS'});
     } catch (error) {
-        console.log('error in AddOwners', error)
+        console.log('error in deleteOwners', error)
     }
 }
 

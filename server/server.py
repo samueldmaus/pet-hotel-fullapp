@@ -11,7 +11,7 @@ cur = conn.cursor()
 @app.route('/api/owners', methods = ['GET', 'POST'])
 def owners():
     if request.method == 'GET':
-        cur.execute("""SELECT COUNT(pets.owner_id) AS pets, owner.name 
+        cur.execute("""SELECT COUNT(pets.owner_id) AS pets, owner.name, owner.id 
         FROM pets RIGHT JOIN owner ON pets.owner_id = owner.id GROUP BY owner.id;""")
         response = cur.fetchall()
         return jsonify(response)
