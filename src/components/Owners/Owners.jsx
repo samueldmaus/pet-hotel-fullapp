@@ -60,7 +60,7 @@ export default connect(mapStoreToProps)(function Owners(props) {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell align="right">Name</StyledTableCell>
               <StyledTableCell align="right">Number of Pets</StyledTableCell>
               <StyledTableCell align="right">Actions</StyledTableCell>
 

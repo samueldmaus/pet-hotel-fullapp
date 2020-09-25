@@ -24,7 +24,7 @@ function* removePet(action) {
     try {
         yield axios.delete(`/api/pets/${action.payload}`)
         yield put({ type: 'GET_PETS' })
-        yield put({ type: 'GET_OWNERS' })
+        // yield put({ type: 'GET_OWNERS' })
     } catch (error) {
         console.log('error in removePet', error);
     }
