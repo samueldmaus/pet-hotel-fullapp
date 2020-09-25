@@ -32,7 +32,7 @@ function* removePet(action) {
 
 function* checkIn(action) {
     try {
-        yield axios.put(`/api/pets/`, action.payload)
+        yield axios.put(`/api/pets`, action.payload)
         yield put({ type: 'GET_PETS' })
     } catch (error) {
         console.log('error in checkIn', error);

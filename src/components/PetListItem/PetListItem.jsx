@@ -69,9 +69,9 @@ class PetListItem extends Component {
             <TableCell>{this.props.pet.breed}</TableCell>
             <TableCell>{this.props.pet.color}</TableCell>
             { this.state.editing ?
-            <TableCell><TextField size="small" value={this.state.newPet.isCheckedIn} onChange = {(event) => this.handleChangePet(event, 'isCheckedIn')}/></TableCell>
+            <TableCell><TextField size="small" value={this.state.newPet.is_checked_in} onChange = {(event) => this.handleChangePet(event, 'is_checked_in')}/></TableCell>
             :
-            <TableCell>{this.props.pet.isCheckedIn}</TableCell>
+            <TableCell>{this.props.pet.is_checked_in}</TableCell>
             }
             { this.state.editing ?
             <TableCell>

@@ -38,7 +38,7 @@ def update_owner(id):
 @app.route('/api/pets', methods = ['GET', 'POST'])
 def petsRoute():
     if request.method == 'GET':
-        cur.execute("""SELECT pets.id, owner.name AS owner, owner.id AS owner_id, pets.name, pets.breed, pets.color, pets.checked_in, pets.checked_in_date 
+        cur.execute("""SELECT pets.id, owner.name AS owner, owner.id AS owner_id, pets.name, pets.breed, pets.color, pets.is_checked_in 
         FROM pets JOIN owner ON pets.owner_id = owner.id;""")
         response = cur.fetchall()
         return jsonify(response)
@@ -48,7 +48,8 @@ def petsRoute():
         pet_color = request.json.get("color")
         pet_breed = request.json.get("breed")
         pet_owner_id = request.json.get("owner")
-        cur.execute("INSERT INTO pets (name, color, breed, owner_id) VALUES (%s, %s, %s, %s);", [pet_name, pet_color, pet_breed, pet_owner_id])
+        checked_in = request.json.get("isCheckedIn")
+        cur.execute("INSERT INTO pets (name, color, breed, owner_id, is_checked_in) VALUES (%s, %s, %s, %s, %s);", [pet_name, pet_color, pet_breed, pet_owner_id, checked_in])
         conn.commit()
         return "success", 201
 
@@ -60,9 +61,9 @@ def deletePet(id):
 
 @app.route('/api/pets', methods = ['PUT'])
 def checkInPet():
-    date = request.form.get("date")
-    pet_id = request.form.get("pet_id")
-    cur.execute("UPDATE pets SET checked_in = %s, checked_in_date = %s WHERE id = %s;", [True, date, pet_id])
+    date = request.json.get("is_checked_in")
+    pet_id = request.json.get("id")
+    cur.execute("UPDATE pets SET is_checked_in = %s WHERE id = %s;", [date, pet_id])
     conn.commit()
     return "updated", 201
 
