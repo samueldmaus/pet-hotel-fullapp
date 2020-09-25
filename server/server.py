@@ -16,7 +16,6 @@ def owners():
         response = cur.fetchall()
         return jsonify(response)
     else:
-        print(request.form)
         ownerName = request.json.get("name")
         cur.execute("INSERT INTO owner (name) VALUES (%s);", [ownerName])
         conn.commit()
@@ -30,7 +29,7 @@ def delete_owner(id):
 
 @app.route('/api/owners/<id>', methods = ['PUT'])
 def update_owner(id):
-    new_name = request.form.get("name")
+    new_name = request.json.get("name")
     cur.execute("UPDATE owner SET name = %s WHERE id = %s;", [new_name, id])
     conn.commit()
     return "updated", 201
@@ -39,14 +38,16 @@ def update_owner(id):
 @app.route('/api/pets', methods = ['GET', 'POST'])
 def petsRoute():
     if request.method == 'GET':
-        cur.execute("SELECT pets.id, owner.name AS owner, pets.name, pets.breed, pets.color, pets.checked_in, pets.checked_in_date FROM pets JOIN owner ON pets.owner_id = owner.id;")
+        cur.execute("""SELECT pets.id, owner.name AS owner, owner.id AS owner_id, pets.name, pets.breed, pets.color, pets.checked_in, pets.checked_in_date 
+        FROM pets JOIN owner ON pets.owner_id = owner.id;""")
         response = cur.fetchall()
         return jsonify(response)
     else:
-        pet_name = request.form.get("name")
-        pet_color = request.form.get("color")
-        pet_breed = request.form.get("breed")
-        pet_owner_id = request.form.get("owner")
+
+        pet_name = request.json.get("name")
+        pet_color = request.json.get("color")
+        pet_breed = request.json.get("breed")
+        pet_owner_id = request.json.get("owner")
         cur.execute("INSERT INTO pets (name, color, breed, owner_id) VALUES (%s, %s, %s, %s);", [pet_name, pet_color, pet_breed, pet_owner_id])
         conn.commit()
         return "success", 201

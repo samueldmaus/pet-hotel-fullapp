@@ -39,47 +39,46 @@ const useStyles = makeStyles({
 
 
 export default connect(mapStoreToProps)(function Owners(props) {
- 
+
   useEffect(() => {
-    props.dispatch({ type: 'GET_OWNERS'});
+    props.dispatch({ type: 'GET_OWNERS' });
   }, []);
 
   const handleDelete = (id) => {
-    props.dispatch({ type: 'DELETE_OWNER', payload: {toDelete: id}})
+    props.dispatch({ type: 'DELETE_OWNER', payload: { toDelete: id } })
     console.log('in id', id)
   }
 
   const classes = useStyles();
- 
+
   return (
     <div>
-    <div>
-    <OwnersInputs />
-    </div>
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align="right">Number of Pets</StyledTableCell>
-            <StyledTableCell align="right">Actions</StyledTableCell>
- 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {props.store.owners.map((owner) => {
-          return (
-              <TableRow key={owner.id}>
-                <TableCell align="right">{owner.name}</TableCell>
-                <TableCell align="right">{owner.pets}</TableCell>
-                <Button variant="contained" color="Primary" onClick={() =>
-               {handleDelete(owner.id)}}>Delete</Button>
-              </TableRow>
-          );
-      })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <div>
+        <OwnersInputs />
+      </div>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell align="right">Number of Pets</StyledTableCell>
+              <StyledTableCell align="right">Actions</StyledTableCell>
+
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {props.store.owners.map((owner) => {
+              return (
+                <TableRow key={owner.id}>
+                  <TableCell align="right">{owner.name}</TableCell>
+                  <TableCell align="right">{owner.pets}</TableCell>
+                  <TableCell align="right"><Button variant="contained" color="Primary" onClick={() => { handleDelete(owner.id) }}>Delete</Button></TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 

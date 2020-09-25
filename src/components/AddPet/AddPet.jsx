@@ -64,7 +64,7 @@ class AddPet extends Component {
                                 <Select className="select" value={this.state.newPet.owner} onChange={(value) => this.handleChangePet(value, 'owner')}>
                                     {this.props.store.owners.map((owner) => {
                                         return (
-                                            <MenuItem value={owner.name} key={owner.id}>{owner.name}</MenuItem>
+                                            <MenuItem value={owner.id} key={owner.id}>{owner.name}</MenuItem>
                                         );
                                     })}
                                 </Select>
